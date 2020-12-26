@@ -4,13 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import lexer.*;
-import parser.expressions.Expression;
-import parser.parselets.BinaryFactorOperatorParselet;
-import parser.parselets.BinaryTermOperatorParselet;
-import parser.parselets.IdentifierParselet;
-import parser.parselets.InfixParselet;
-import parser.parselets.PrefixOperatorParselet;
-import parser.parselets.PrefixParselet;
+import parser.expressions.*;
+import parser.parselets.*;
 
 public class Parser {
   private int currentPosition = 0;
@@ -22,13 +17,10 @@ public class Parser {
     this.tokens = tokens;
 
     prefixParselets.put(TokenType.IDENTIFIER, new IdentifierParselet());
-    prefixParselets.put(TokenType.PLUS, new PrefixOperatorParselet());
     prefixParselets.put(TokenType.MINUS, new PrefixOperatorParselet());
-    prefixParselets.put(TokenType.STAR, new PrefixOperatorParselet());
-    prefixParselets.put(TokenType.SLASH, new PrefixOperatorParselet());
 
-    infixParselets.put(TokenType.PLUS, new BinaryTermOperatorParselet());
-    infixParselets.put(TokenType.STAR, new BinaryFactorOperatorParselet());
+    infixParselets.put(TokenType.PLUS, new BinaryOperatorParselet(Precedence.TERM));
+    infixParselets.put(TokenType.STAR, new BinaryOperatorParselet(Precedence.FACTOR));
   }
 
   private boolean hasTokensToParse() {

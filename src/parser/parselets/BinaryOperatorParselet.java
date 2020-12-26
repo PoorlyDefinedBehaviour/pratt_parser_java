@@ -2,14 +2,19 @@ package parser.parselets;
 
 import lexer.Token;
 import parser.Parser;
-import parser.Precedence;
 import parser.expressions.Expression;
 import parser.expressions.OperatorExpression;
 
-public class BinaryTermOperatorParselet implements InfixParselet {
+public class BinaryOperatorParselet implements InfixParselet {
+  int precedence;
+
+  public BinaryOperatorParselet(int precedence) {
+    this.precedence = precedence;
+  }
+
   @Override
   public int getPrecedence() {
-    return Precedence.TERM;
+    return precedence;
   }
 
   @Override

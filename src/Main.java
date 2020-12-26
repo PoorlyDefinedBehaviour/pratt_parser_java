@@ -10,6 +10,7 @@ public class Main {
   public static void main(String[] args) {
     List<Token> tokens = new ArrayList<>();
 
+    tokens.add(new Token(TokenType.MINUS, "-"));
     tokens.add(new Token(TokenType.IDENTIFIER, "x"));
     tokens.add(new Token(TokenType.PLUS, "+"));
     tokens.add(new Token(TokenType.IDENTIFIER, "y"));
